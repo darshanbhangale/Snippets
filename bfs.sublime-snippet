@@ -1,0 +1,49 @@
+<snippet>
+	<content><![CDATA[
+void bfs(int src,vector<bool>& vis,int vert,vector<vector<int>> adj/*,int finpath*/){
+	vis.resize(vert+1);
+	// //distance and paretn matrix use when needed
+	// vector<int> d(vert+1), p(vert+1);p[src]=-1;
+	queue<int> q;
+	q.push(src);
+	vis[src]=true;
+	
+	while (!q.empty()) {
+    int v = q.front();
+    q.pop();
+    for (int u : adj[v]) {
+        if (!vis[u]) {
+            vis[u] = true;
+            q.push(u);
+            // // distance and paretn matrix use when needed
+            // d[u] = d[v] + 1;
+            // p[u] = v;
+        }
+    }
+}
+// // To find Path
+// if (vis[finpath]) {
+//     vector<int> path;
+//     for (int v = finpath; v != -1; v = p[v])
+//         {path.push_back(v);}
+//     reverse(path.begin(), path.end());
+   
+    
+
+//     return path;
+// }
+// else{return{-1};}
+
+
+
+
+
+
+
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	 <tabTrigger>bfs</tabTrigger> 
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

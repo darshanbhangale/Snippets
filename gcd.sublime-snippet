@@ -1,0 +1,16 @@
+<snippet>
+	<content><![CDATA[
+
+long long int gcd(long long int a,long long int b){
+	if(a==0){return b;}
+	return gcd (b%a,a);
+}
+
+
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	 <tabTrigger>gcd</tabTrigger> 
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

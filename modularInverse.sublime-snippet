@@ -1,0 +1,32 @@
+<snippet>
+	<content><![CDATA[
+int xgcd(int a, int b, int& x, int& y) {
+    if (b == 0) {
+        x = 1;
+        y = 0;
+        return a;
+    }
+    int x1, y1;
+    int d = xgcd(b, a % b, x1, y1);
+    x = y1;
+    y = x1 - y1 * (a / b);
+    return d;
+}
+int modularInverse(int a,int m){
+	int x,y;
+	int g=xgcd(a,m,x,y);
+	if (g != 1) {
+    return -1;
+}
+else {
+    x = (x % m + m) % m;
+    return x;
+    
+}
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	 <tabTrigger>modularInverse</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

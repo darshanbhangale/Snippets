@@ -1,0 +1,48 @@
+<snippet>
+	<content><![CDATA[
+vector<int> find_lps(string s) {
+    int n = s.length();
+    vector<int> lps(n);
+    for (int i = 1; i < n; i++) {
+        int j = lps[i-1];
+        while (j > 0 && s[i] != s[j])
+            j = lps[j-1];
+        if (s[i] == s[j])
+            j++;
+        lps[i] = j;
+    }
+    return lps;
+}
+
+int kmp(string t,string p){
+    int n=t.length();
+    int m=p.length();
+    vector<int>  pre_sum;
+    pre_sum= find_lps(p);
+    int i=0,j=0;
+    while(i<n){
+        if(t[i]==p[j]){
+            i++;j++;
+            if(j==m){
+                return i-m;
+            }
+        }
+        else{
+            if(j!=0){
+                j=pre_sum[j-1];
+            }
+            else{
+                i++;
+            }
+            
+        }
+    }
+    return -1;
+}
+//on the i th func will return the index of 0th of the main string
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	 <tabTrigger>kmp</tabTrigger> 
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

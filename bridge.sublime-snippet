@@ -1,0 +1,31 @@
+<snippet>
+	<content><![CDATA[
+vector<vector<int>> adj;
+
+vector<bool> vis;
+vector<int> tin, low;
+int timer=0;
+
+void dfs2(int v, int p ) {
+    vis[v] = true;
+    tin[v] = low[v] = timer++;
+    for (int to : adj[v]) {
+        if (to == p) {continue;}
+        if (vis[to]) {
+            low[v] = min(low[v], tin[to]);
+        } 
+        else {
+            dfs2(to, v);
+            low[v] = min(low[v], low[to]);
+            if (low[to] > tin[v]){
+                write(v, to);nl
+            }
+        }
+    }
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>bridge</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

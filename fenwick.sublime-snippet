@@ -1,0 +1,43 @@
+<snippet>
+	<content><![CDATA[
+struct fenwick{
+    int N;
+    vector<int> fen;
+    fenwick(int n){
+        N=n;
+        fen.assign(n+1,0);
+    }
+    void update(int i,int add){
+        while(i<=N){
+            fen[i]+=add;
+            i+=(i & (-i));
+        }
+    }
+    int pref(int i){
+        int s=0;
+        while(i>0){
+            s+=fen[i];
+            i-=(i & (-i));
+        }
+        return s;
+    }
+    int rangeSum(int l,int r){
+        return (pref(r)-pref(l-1));
+    }
+    int search(int val){
+        int curr=0,prevsum=0;
+        for(int i=log2(N)+1;i>=0;i--){
+            if(fen[curr+(1<<i)]+prevsum <val && curr+(1<<i)<N){
+                curr =curr +(1<<i);
+                prevsum+=fen[curr];
+            }
+        }
+        return (curr+1);
+    }
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>fenwick</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

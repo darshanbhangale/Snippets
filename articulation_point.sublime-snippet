@@ -1,0 +1,36 @@
+<snippet>
+	<content><![CDATA[
+vector<vector<int>> adj;
+vector<bool> vis;
+vector<int> tin, low;
+int timer=0;
+void dfs3(int v, int p) {
+    vis[v] = true;
+    tin[v] = low[v] = timer++;
+    int children=0;
+    for (int to : adj[v]) {
+        if (to == p) {
+            continue;
+        }
+        if (vis[to]) {
+            low[v] = min(low[v], tin[to]);
+        } 
+        else {
+            dfs3(to, v);
+            low[v] = min(low[v], low[to]);
+            if (low[to] >= tin[v] && p!=-1){
+                cout<<(v)<<" ";
+            }
+            ++children;
+        }
+    }
+    if(p == -1 && children > 1){
+        cout<<(v)<<endl;
+    }
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>articulation_point</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

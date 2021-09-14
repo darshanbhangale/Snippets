@@ -1,0 +1,19 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"BracketHighlighter",
+		"CppFastOlympicCoding",
+		"EasyClangComplete",
+		"Package Control",
+		"SublimeAStyleFormatter",
+		"SublimeLinter-clang",
+		"SublimeREPL",
+		"TopCoder Helper",
+		"VintageLines",
+		"Vintageous",
+	],
+}

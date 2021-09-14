@@ -1,0 +1,24 @@
+<snippet>
+	<content><![CDATA[
+vector<vector<int>> adj; 
+int ver; 
+vector<int> col;
+// vector<int> time_in, time_out;
+int timer = 0;
+void dfs(int v) {
+    // time_in[v] = timer++;
+    col[v] = 1;
+    for (int u : adj[v]){
+        if (col[u] == 0){            
+            dfs(u);
+        }
+    }
+    // col[v] = 2;
+    // time_out[v] = timer++;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	 <tabTrigger>dfs</tabTrigger> 
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

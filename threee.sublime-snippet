@@ -1,0 +1,14 @@
+<snippet>
+	<content><![CDATA[
+template<typename A,typename B,typename C>
+struct threee{
+    A fff;
+    B sss;
+    C ttt;
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>threee</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

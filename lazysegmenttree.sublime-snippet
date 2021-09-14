@@ -1,0 +1,64 @@
+<snippet>
+	<content><![CDATA[
+int a[100005],seg[4 * 100005],lazy[4*100005];
+void build(int ind,int low,int high){
+    if(low==high){
+        seg[ind]=a[low];
+        return;
+    }
+    int mid=(low+high)/2;
+    build(2*ind+1,low,mid);
+    build(2*ind+2,mid+1,high);
+    seg[ind]=seg[2*ind+1]+seg[2*ind+2];
+}
+int query(int ind,int low,int high,int l,int r){
+    if(lazy[ind]!=0){
+        seg[ind] +=(high-low +1)*lazy[ind];    
+        if(low!=high){
+            lazy[2*ind +1] +=lazy[ind];
+            lazy[2*ind +2] +=lazy[ind];
+        }
+        lazy[ind]=0;
+    }
+    if(r<low || l>high ||low>high){return 0;}
+    if(low >=l && high<=r){
+        return seg[ind];
+    }
+    if(high<l || low > r){
+        return INT_MIN;
+    }
+    int mid=(low+high)/2;
+    int left=query(2*ind+1,low,mid,l,r);
+    int right=query(2*ind+2,mid+1,high,l,r);
+    return left+right;
+}
+void update(int ind,int low,int high,int l,int r,int value){
+    if(lazy[ind]!=0){
+        seg[ind] += (high-low +1) *lazy[ind];
+        if(low!=high){
+            lazy[2*ind +1]+=lazy[ind];
+            lazy[2*ind+2]+=lazy[ind];
+        }
+        lazy[ind]=0;
+    }
+    if(r<low || l>high || low > high) return;
+    if(low>=l && high<=r){
+        seg[ind] += (high -low +1)* value;
+        if(low!=high){
+            lazy[2*ind +1] +=lazy[ind];
+            lazy[2*ind +2] +=lazy[ind];
+        }
+        return;
+    }
+
+    int mid=(low+high)/2;
+        update(2*ind+1,low,mid,l,r,value);
+        update(2*ind+2,mid+1,high,l,r,value);
+    seg[ind]=seg[2*ind+1]+seg[2*ind+2];
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>lazySegmentTree</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

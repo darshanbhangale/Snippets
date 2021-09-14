@@ -1,0 +1,39 @@
+<snippet>
+	<content><![CDATA[
+class Graph{
+		public:
+			 
+			vector<vector<int>> adj;
+			int verts;
+			int edges;
+			int src;
+			//constructor
+			Graph(int vertices){
+				adj.resize(vertices+1);
+				verts=vertices;
+			}
+			//add edge
+			void addEdge(int ed1,int ed2){
+				adj[ed1].pb(ed2);
+			}
+			void removeEdge(int ed1,int ed2){
+				vector<int>::iterator itera=find(adj[ed1].begin(),adj[ed1].end(),ed2);
+				adj[ed1].erase(itera);
+			}
+			//print graph
+			void printGraph(){
+				for(auto x:adj){
+					// if(x.empty()){continue;}
+					for(int y: x){
+						cout<<y<<" ";
+					}nl
+				}
+			}
+	
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	 <tabTrigger>graph</tabTrigger> 
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

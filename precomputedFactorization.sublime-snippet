@@ -1,0 +1,41 @@
+<snippet>
+	<content><![CDATA[
+vector<ll> precomputePrimesTill(long long int n)
+{
+	n=sqrt(n);
+	//precompute till sqrt(n) only for factorization
+	bool arr[n+1];
+	memset(arr,true,sizeof(arr));
+	for(long long int p=2;p*p<=n;p++){
+		if(arr[p]==true){
+		for(long long int i=2*p;i<=n;i+=p){
+			arr[i]=false;
+
+		}}
+	}
+	vector<ll> primesTill;
+	rep(i,2,n+1){
+		if(arr[i]){
+			primesTill.pb(i);
+		}
+	}
+	return primesTill;
+}
+vector<ll> factorization(ll n,vector<ll> primes){
+	vector<ll> factors;
+	for(ll i:primes){ 	
+		if(i*i>n){break;}
+		while(n%i==0){
+			factors.pb(i);
+			n/=i;
+		}
+	}
+	if(n>1){factors.pb(n);}
+	return factors;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	 <tabTrigger>precomputedFactorization</tabTrigger> 
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

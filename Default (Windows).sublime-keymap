@@ -1,0 +1,24 @@
+[
+{
+    "keys": ["j", "k"],
+    "command": "_enter_normal_mode",
+    "args": {"mode": "mode_insert"},
+    "context": [{"key": "vi_insert_mode_aware"}]
+}
+ // ,{ "keys": ["{","enter"], "command": ["9","j"] },
+,{"keys": ["ctrl+shift+."], "command": "timestamp" },   
+    { "keys": ["ctrl+c"], "command": "copy" },
+
+]
+
+   
+
+
+//     {
+//     "keys": ["ctrl+shift+p"],
+//     "command": "toggle_setting",
+//     "args":
+//     {
+//         "setting": "auto_match_enabled"
+//     }
+// } 

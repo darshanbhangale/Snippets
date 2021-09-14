@@ -1,0 +1,68 @@
+<snippet>
+	<content><![CDATA[
+class Trie{
+public:
+    Trie* BIT[2];
+    int cnt=0;
+
+    // void insert(Trie*,int);
+    // int maxxorpair(Trie*,int*,int);
+};
+void insert(Trie* root,int num){
+    Trie* curr=root;
+    for(int i=30;i>=0;i--){
+        int b=(num>>i)&1;
+
+        if(!curr->BIT[b]){
+            curr->BIT[b] =new Trie();
+        }
+        curr=curr->BIT[b];
+        curr->cnt++;
+    }
+}
+void remove(Trie* root,int num){
+    Trie* curr=root;
+    for(int i=30;i>=0;i--){
+        int b=(num>>i)&1;
+        curr=curr->BIT[b];
+        curr->cnt--;
+    }
+
+}
+int maxxorpair(Trie* root,int n){
+    
+    
+        int cur_xor=0;
+        Trie* curr=root;
+        int value=n;
+        for(int j=30;j>=0;j--){
+            int b=((value>>j)&1);
+            if(b==0){
+                if(curr->BIT[1] && curr->BIT[1]->cnt > 0){
+                    curr=curr->BIT[1];
+                    cur_xor+=((1LL << j));
+                }
+                else{
+                    curr=curr->BIT[0];
+                }
+            }
+            else{
+                if(curr->BIT[0] && curr->BIT[0]->cnt >0){
+                    curr=curr->BIT[0];
+                    cur_xor+=(1LL << j);
+                }
+                else{
+                    curr=curr->BIT[1];                   
+                }
+            }
+        }
+        
+    
+    return cur_xor;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	 <tabTrigger>maxxortrie</tabTrigger> 
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

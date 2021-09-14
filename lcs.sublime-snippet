@@ -1,0 +1,23 @@
+<snippet>
+	<content><![CDATA[
+const int N=1e3+3;
+ll arrdp[N][N];
+//memset(arrdp, -1, sizeof(arrdp));
+ll lcs(char a[],char b[],ll m,ll n){
+	if((m==0)||(n==0)){return 0;}
+
+	if(a[m-1]==b[n-1]){
+		return 1+(arrdp[m-1][n-1]!=-1?arrdp[m-1][n-1]:lcs(a,b,m-1,n-1));
+	}
+	else{
+		return max((arrdp[m-1][n]!=-1?arrdp[m-1][n]:lcs(a,b,m-1,n)),(arrdp[m][n-1]!=-1?arrdp[m][n-1]:lcs(a,b,m,n-1)));
+	}
+
+}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	 <tabTrigger>lcs</tabTrigger> 
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
