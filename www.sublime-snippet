@@ -10,6 +10,7 @@ const int imax=INT_MAX;
 const int imin=INT_MIN;
 const long long int llmax=LLONG_MAX;
 const long long int llmin=LLONG_MIN;
+int gttccc=-1;
 #define pb emplace_back
 #define rep(i,a,b) for(long long int i=a;i<b;i++)
 #define nl cout<<"\n";
@@ -37,6 +38,7 @@ const long long int llmin=LLONG_MIN;
 #define mina(a,n) *min_element(a,a+n)
 #define maxv(v) *max_element(v.begin(), v.end())
 #define minv(v) *min_element(v.begin(), v.end())
+# define gout() if(gttccc==-1){gttccc=ttt+1;};cout<<"Case #"<<gttccc-ttt<<": ";
 template<typename... TT>
 void read(TT&... args){
     ((cin>>args),...);
@@ -94,9 +96,23 @@ tcTU> ostream& operator<<(ostream &cout,map<T,U> const &m){
     }
     return cout<<"";
 }
+tcT> istream& operator>>(istream& cin, vector<T> &v) {
+    rep(i,0,v.size()-1){cin>>v[i];}
+    return cin >> v[v.size()-1];
+}
 tcTU> istream& operator>>(istream& cin, pair<T, U> &p) {
     cin >> p.first;
     return cin >> p.second;
+}
+tcT> bool operator+=(vector<T> &v,T elem){
+    v.pb(elem);
+    return true;
+}
+tcT> pair<T,T> operator++(vector<vector<T>> &adj){
+    T p,q;cin>>p>>q;
+    adj[p].pb(q);
+   adj[q].pb(p);
+   return {p,q};
 }
 
 int main()
@@ -106,7 +122,8 @@ cin.tie(0);cout.tie(0);
 int ttt;
 cin>>ttt;
 while(ttt--){
-	
+
+$0	
 
 
 

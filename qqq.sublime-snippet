@@ -93,9 +93,23 @@ tcTU> ostream& operator<<(ostream &cout,map<T,U> const &m){
     }
     return cout<<"";
 }
+tcT> istream& operator>>(istream& cin, vector<T> &v) {
+    rep(i,0,v.size()-1){cin>>v[i];}
+    return cin >> v[v.size()-1];
+}
 tcTU> istream& operator>>(istream& cin, pair<T, U> &p) {
     cin >> p.first;
     return cin >> p.second;
+}
+tcT> bool operator+=(vector<T> &v,T elem){
+    v.pb(elem);
+    return true;
+}
+tcT> pair<T,T> operator++(vector<vector<T>> &adj){
+    T p,q;cin>>p>>q;
+    adj[p].pb(q);
+   adj[q].pb(p);
+   return {p,q};
 }
 
 int main()
@@ -103,7 +117,7 @@ int main()
 ios_base::sync_with_stdio(0);
 cin.tie(0);cout.tie(0);
 
-
+$0
 
 
 
