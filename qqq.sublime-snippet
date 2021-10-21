@@ -10,8 +10,8 @@ const int imax=INT_MAX;
 const int imin=INT_MIN;
 const long long int llmax=LLONG_MAX;
 const long long int llmin=LLONG_MIN;
-#define pb emplace_back
-#define F_OR(i, a, b, s) for (int i=(a); (s)>0?i<(b):i>(b); i+=(s))
+#define pb push_back
+#define F_OR(i, a, b, s) for (ll i=(a); (s)>0?i<(b):i>(b); i+=(s))
 #define F_OR1(e) F_OR(i, 0, e, 1)
 #define F_OR2(i, e) F_OR(i, 0, e, 1)
 #define F_OR3(i, b, e) F_OR(i, b, e, 1)
@@ -25,7 +25,7 @@ const long long int llmin=LLONG_MIN;
 #define all(x) (x).begin(),(x).end()
 #define sall(x) sort((x).begin(),(x).end());
 #define rall(x) sort((x).rbegin(),(x).rend()); 
-#define fill(x, y) memset(x, y, sizeof(x))
+#define meme(x, y) memset(x, y, sizeof(x))
 #define each(a,x) for (auto& a: x)
 #define ff first
 #define ss second
@@ -33,9 +33,6 @@ const long long int llmin=LLONG_MIN;
 #define no cout<<"NO\n";
 #define tcT template<typename T
 #define tcTU template<typename T, typename U
-#define everyone(a,dtype,op) calc_all_val(a, [](dtype t1, dtype t2) {return t1 op t2; });
-#define inp(n,a) ll n;cin>>n;vector<ll> a(n);rep(i,0,n){cin>>a[i];}
-#define inps(n,s) ll n;cin>>n;string s;cin>>s;
 #define maxa(a,n) *max_element(a,a+n)
 #define mina(a,n) *min_element(a,a+n)
 #define maxv(v) *max_element(v.begin(), v.end())
@@ -48,10 +45,15 @@ template<typename... TT>
 void write(TT&&... args){
     ((cout<<args<<" "),...);
 }
-void dbg_out() {cerr<<"}\n";}
-template<typename Head,typename... Tail> 
-void dbg_out(Head H,Tail... T) {cerr<<H;if(sizeof...(Tail))cerr<<", ";dbg_out(T...);}
-#define deb(...) cerr<<"{"<<#__VA_ARGS__<<"} = {",dbg_out(__VA_ARGS__);
+#define deb(...) dbg(#__VA_ARGS__, __VA_ARGS__);
+template <typename Arg1> void dbg(const char* name, Arg1&& arg1){cerr <<" "<< name << " = " << arg1 << endl;}
+template <typename Arg1, typename... Args>void dbg(const char* names, Arg1&& arg1, Args&&... args)
+{
+    const char* comma = strchr(names + 1, ',');
+    cerr<<" ";
+    cerr.write(names, comma - names) << " = " << arg1;
+    dbg(comma, args...);
+}
 namespace binary_search_kar_jaldi{
     tcTU> T first_True(T lo,T hi, U F){
         hi++;assert(lo <=hi);
@@ -72,18 +74,12 @@ namespace binary_search_kar_jaldi{
 }
 tcT> T div_rounded_up(T a, T b) { return a/b+((a^b)>0&&a%b); }
 tcT> T div_rounded_down(T a, T b) { return a/b-((a^b)<0&&a%b); }
-tcTU> T calc_all_val(vector<T> inp, U f)
-{
-    ll n=inp.size();
-    T res=inp[0];
-    assert(n>0);
-    rep(i,1,n){
-        res=f(inp[i],res);
-    }
-    return res;
+tcT> bool getBIT(T mask,int k){
+    return ((mask>>k)&1);
 }
-tcT> bool kBIT(T num,int k){
-    return ((num>>k)&1);
+tcT> void setBIT(T& mask,int k){
+    mask=(mask|(1<<(k-1)));
+    return;
 }
 tcTU> ostream& operator<<(ostream &cout, pair<T, U> const &p) { return cout <<"("<<p.ff<<", "<<p.ss<<")"; }
 tcT> ostream& operator<<(ostream &cout, vector<T> const &v) {
@@ -110,10 +106,78 @@ tcT> bool operator+=(vector<T> &v,T elem){
 }
 tcT> pair<T,T> operator++(vector<vector<T>> &adj){
     T p,q;cin>>p>>q;
+    p--;q--;
     adj[p].pb(q);
    adj[q].pb(p);
    return {p,q};
 }
+#include<ext/pb_ds/assoc_container.hpp>
+#include<ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+tcT> using my_set=tree<T,null_type,less<T>,rb_tree_tag,tree_order_statistics_node_update>;
+tcT> using my_multi_set=tree<T,null_type,less_equal<T>,rb_tree_tag,tree_order_statistics_node_update>;
+template<ll MOD>
+class Modular{
+public:
+    ll value;
+    static const ll MOD_Value=MOD;
+    Modular():value(0){}
+    explicit operator ll() const { return value; }
+    void normalize() {this->value%=MOD;if(this->value < 0 ){(this->value)+=MOD;}}
+    Modular(ll newVal) : value(ll(newVal % MOD_Value)) { if (value < 0) value += MOD; }
+    friend bool operator == (const Modular& a, const Modular& b) { return a.value == b.value; }
+    friend bool operator != (const Modular& a, const Modular& b) { return a.value != b.value; }
+    friend bool operator < (const Modular& a, const Modular& b) { return a.value < b.value; }
+    friend bool operator > (const Modular& a, const Modular& b) { return a.value > b.value; }
+    friend bool operator <= (const Modular& a, const Modular& b) { return a.value <= b.value; }
+    friend bool operator >= (const Modular& a, const Modular& b) { return a.value >= b.value; }
+    friend Modular power(Modular a, ll p) {
+        Modular ans = 1; assert(p >= 0);
+        for (; p; p /= 2, a *= a) if (p&1){ans *= a;}; return ans;}
+    friend Modular inv(const Modular& a) { assert(a.value != 0);return power(a,MOD-2);}
+    Modular& operator += (const Modular& o) {
+        value += o.value;
+        if (value >= MOD) value -= MOD;
+        return *this;
+    }
+    Modular& operator -= (const Modular& o) {
+        value -= o.value;
+        if (value < 0) value += MOD;
+        return *this;
+    }
+    Modular& operator *= (const Modular& o) {
+        value = (ll)(ll(value) * ll(o.value) % MOD);
+        return *this;
+    }
+    Modular& operator ++ () {
+        value ++;
+        if (value == MOD) value = 0;
+        return *this;
+    }
+    Modular& operator -- () {
+        if (value == 0) value = MOD;
+        value --;
+        return *this;
+    }
+    Modular& operator/=(const Modular& o) { return (*this) *= inv(o); }
+    friend Modular operator ++ (Modular& a, int) { Modular r = a; ++a; return r; }
+    friend Modular operator -- (Modular& a, int) { Modular r = a; --a; return r; }
+    friend Modular operator+(Modular a, const Modular& b) { return a += b; }
+    friend Modular operator-(Modular a, const Modular& b) { return a -= b; }
+    friend Modular operator*(Modular a, const Modular& b) { return a *= b; }
+    friend Modular operator/(Modular a, const Modular& b) { return a /= b; }
+};
+template<ll md> ostream& operator<<(ostream &cout,Modular<md> const &m){
+    cout<<m.value;
+    return cout<<"";
+}
+template<ll md> istream& operator>>(istream &cin,Modular<md> &m){
+cin>>m.value;
+m.normalize();
+    return cin;
+}
+constexpr ll modTakenAsInput=1e9+7;
+using Mint =Modular<modTakenAsInput>;
 
 int main()
 {
