@@ -11,9 +11,9 @@
 // 	"light_theme": "Default.sublime-theme",
 // }
 {
-	"auto_close_tags": false,
+	"auto_close_tags": true,
 	"color_scheme": "Packages/Color Scheme - Default/Monokai.sublime-color-scheme",
-	"font_size": 14,
+	"font_size": 18,
 	"ignored_packages":
 	[
 		 // "neovintageous",
@@ -26,9 +26,11 @@
 /*"Vintage Relative Lines",*/
 /*"0_package_control_loader",*/
 /*"TopCoder Helper",*/
+/*"EasyClangComplete",*/
+/*"BracketHighlighter",*/
 	],
 	"show_git_status": false,
-	"tab_completion": false,
+	"tab_completion": true,
 	"tab_size": 4,
 	"theme": "Adaptive.sublime-theme",
 	"translate_tabs_to_spaces": true,

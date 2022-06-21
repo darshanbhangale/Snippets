@@ -1,0 +1,50 @@
+<snippet>
+    <content><![CDATA[
+// Works for Directed Acyclic Graph (DAG)
+// Take input manually bcoz its a Directed graph
+// Check for Cylces in the graph
+// works for all vertices are present or else do something fro indegree
+map<pair<int,int>,int> cost;
+vector<int> inDegree(n);
+vector<int> topo_order;
+// topo starts here
+queue<int> q;
+for(int i=0;i<n;i++){
+    if(inDegree[i]==0){
+        q.push(i);
+    }
+}
+while(!q.empty()){
+    int v=q.front();
+    q.pop();
+    topo_order.pb(v);
+    for(auto& u:adj[v]){
+        inDegree[u]--;
+        if(inDegree[u]==0){
+            q.push(u);
+        }
+    }
+}
+// topo ends here with output in topo_order and min distance starts here
+// doesnt works if there are more than one paths for same 2 vertices
+// cost will give error in that case
+int INF=1e9;
+vector<int> dist(n,INF);
+int src=0;
+dist[src]=0;
+each(v,topo_order){
+    each(u,adj[v]){
+        if(cost.count({v,u})){
+            dist[u]=min(dist[u],dist[v]+cost[{v,u}]);
+        }
+    }
+}
+// ans in dist    ---> dist part ends here
+// if edge doesnt exists then dist will be INF
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>ShortestPathDAG</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

@@ -1,0 +1,70 @@
+<snippet>
+    <content><![CDATA[
+template<ll MOD>
+class Modular{
+public:
+    ll value;
+    static const ll MOD_Value=MOD;
+    Modular():value(0){}
+    explicit operator ll() const { return value; }
+    void normalize() {this->value%=MOD;if(this->value < 0 ){(this->value)+=MOD;}}
+    Modular(ll newVal) : value(ll(newVal % MOD_Value)) { if (value < 0) value += MOD; }
+    friend bool operator == (const Modular& a, const Modular& b) { return a.value == b.value; }
+    friend bool operator != (const Modular& a, const Modular& b) { return a.value != b.value; }
+    friend bool operator < (const Modular& a, const Modular& b) { return a.value < b.value; }
+    friend bool operator > (const Modular& a, const Modular& b) { return a.value > b.value; }
+    friend bool operator <= (const Modular& a, const Modular& b) { return a.value <= b.value; }
+    friend bool operator >= (const Modular& a, const Modular& b) { return a.value >= b.value; }
+    friend Modular power(Modular a, ll p) {
+        Modular ans = 1; assert(p >= 0);
+        for (; p; p /= 2, a *= a) if (p&1){ans *= a;}; return ans;}
+    friend Modular inv(const Modular& a) { assert(a.value != 0);return power(a,MOD-2);}
+    Modular& operator += (const Modular& o) {
+        value += o.value;
+        if (value >= MOD) value -= MOD;
+        return *this;
+    }
+    Modular& operator -= (const Modular& o) {
+        value -= o.value;
+        if (value < 0) value += MOD;
+        return *this;
+    }
+    Modular& operator *= (const Modular& o) {
+        value = (ll)(ll(value) * ll(o.value) % MOD);
+        return *this;
+    }
+    Modular& operator ++ () {
+        value ++;
+        if (value == MOD) value = 0;
+        return *this;
+    }
+    Modular& operator -- () {
+        if (value == 0) value = MOD;
+        value --;
+        return *this;
+    }
+    Modular& operator/=(const Modular& o) { return (*this) *= inv(o); }
+    friend Modular operator ++ (Modular& a, int) { Modular r = a; ++a; return r; }
+    friend Modular operator -- (Modular& a, int) { Modular r = a; --a; return r; }
+    friend Modular operator+(Modular a, const Modular& b) { return a += b; }
+    friend Modular operator-(Modular a, const Modular& b) { return a -= b; }
+    friend Modular operator*(Modular a, const Modular& b) { return a *= b; }
+    friend Modular operator/(Modular a, const Modular& b) { return a /= b; }
+};
+template<ll md> ostream& operator<<(ostream &cout,Modular<md> const &m){
+    cout<<m.value;
+    return cout<<"";
+}
+template<ll md> istream& operator>>(istream &cin,Modular<md> &m){
+cin>>m.value;
+m.normalize();
+    return cin;
+}
+constexpr ll modTakenAsInput=1e9+7;
+using int_ =Modular<modTakenAsInput>;
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>ModularInteger</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

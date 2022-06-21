@@ -1,0 +1,33 @@
+<snippet>
+    <content><![CDATA[
+// Works for Directed Acyclic Graph
+// Take input manually bcoz its a Directed graph
+// Check for Cylces in the graph
+// works for all vertices are present or else do something fro indegree
+vector<int> topo_order;
+vector<int> inDegree(n);
+// topo starts here
+queue<int> q;
+for(int i=0;i<n;i++){
+    if(inDegree[i]==0){
+        q.push(i);
+    }
+}
+while(!q.empty()){
+    int v=q.front();
+    q.pop();
+    topo_order.pb(v);
+    for(auto& u:adj[v]){
+        inDegree[u]--;
+        if(inDegree[u]==0){
+            q.push(u);
+        }
+    }
+}
+// topo ends here with output in topo_order
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>Topological_Sorting</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

@@ -1,0 +1,26 @@
+<snippet>
+    <content><![CDATA[
+namespace BSJK{
+    tcTU> T FT(T lo,T hi, U F){
+        hi++;assert(lo <=hi);
+        while(lo<hi){
+            T mid= lo+(hi-lo)/2;
+            F(mid) ? hi=mid :lo =mid+1;
+        }
+        return lo;
+    }
+    tcTU> T LT(T lo,T hi, U F){
+        lo--;assert(lo<=hi);
+        while(lo<hi){
+            T mid=lo+(hi-lo+1)/2;
+            F(mid) ? lo=mid : hi=mid-1;
+        }
+        return lo;
+    }
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>BinarySearch</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

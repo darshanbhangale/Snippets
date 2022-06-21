@@ -1,0 +1,42 @@
+<snippet>
+    <content><![CDATA[
+#include<bits/stdc++.h>
+using namespace std;
+#define pb push_back
+#define rep(i,a,b) for(int i=a;i<b;i++)
+#define nl cout<<"\n";
+#define all(x) (x).begin(),(x).end()
+typedef long long int ll;
+#define ff first
+#define ss second
+#ifdef LOCAL
+#include "cp/deb.h"
+#else
+#define deb(...) 
+#endif
+void test_cases_no(){
+
+$0
+
+
+
+return;
+}
+int main()
+{
+ios_base::sync_with_stdio(0);
+cin.tie(0);cout.tie(0);
+
+int test_cases=1;
+//cin>>test_cases;
+while(test_cases--){
+    test_cases_no();
+}
+return 0;
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>rrr</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

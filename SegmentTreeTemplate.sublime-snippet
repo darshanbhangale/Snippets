@@ -1,0 +1,87 @@
+<snippet>
+    <content><![CDATA[
+// T for DataType and U for the Function
+tcT>
+class Segment_Tree{
+    // low,high is [0,n-1] && l,r is queries
+public:
+    int N;
+    vector<T> seg;
+    vector<T> data;
+    T ExtremeValue;
+    T (*Function)(T obj1,T obj2);
+    Segment_Tree(vector<T> data,T ExtremeValue,T (*Function)(T obj1, T obj2)){
+        N=data.size();
+        this->ExtremeValue=ExtremeValue;
+        this->data=data;
+        this->Function=Function;
+        seg.resize(4*N+5);
+        build(0,0,N-1);
+    }
+    Segment_Tree(T data[],int n,T ExtremeValue,T (*Function)(T obj1, T obj2)){
+        N=n;
+        this->ExtremeValue=ExtremeValue;
+        rep(n){
+            this->data.pb(data[i]);
+        }
+        this->Function=Function;
+        seg.resize(4*N+5);
+        build(0,0,N-1);
+    }
+
+    // Build
+    void build(int ind,int low,int high){
+        if(low==high){
+            seg[ind]=data[low];
+            return;
+        }
+        int mid=(low+high)/2;
+        build(2*ind+1,low,mid);
+        build(2*ind+2,mid+1,high);
+        seg[ind]=Function(seg[2*ind+1],seg[2*ind+2]);
+    }
+
+    T query(int l,int r){
+        return queryFin(0,0,N-1,l,r);
+    }
+    // Query
+    T queryFin(int ind,int low,int high,int l,int r){
+        if(low >=l && high<=r){
+            return seg[ind];
+        }
+        if(high<l || low > r){
+            return ExtremeValue;
+        }
+        int mid=(low+high)/2;
+        T left=queryFin(2*ind+1,low,mid,l,r);
+        T right=queryFin(2*ind+2,mid+1,high,l,r);
+        return Function(left,right);
+    }
+
+
+    void update(int tar_ind,T value){
+        updateFin(0,0,N-1,tar_ind,value);
+    } 
+    // Update
+    void updateFin(int ind,int low,int high,int tar_ind,T value){
+        if(low==high){
+            data[low]=value;
+            seg[ind]=data[low];
+            return;
+        }
+        int mid=(low+high)/2;
+        if(tar_ind <=mid){
+            updateFin(2*ind+1,low,mid,tar_ind,value);
+        }
+        else{
+            updateFin(2*ind+2,mid+1,high,tar_ind,value);
+        }
+        seg[ind]=Function(seg[2*ind+1],seg[2*ind+2]);
+    }
+};
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>SegmentTreeTemplate</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

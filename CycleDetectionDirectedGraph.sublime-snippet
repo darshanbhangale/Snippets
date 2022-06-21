@@ -1,0 +1,26 @@
+<snippet>
+    <content><![CDATA[
+vector<bool> vis(n,0),recst(n,0);
+function<bool(int)> CycleDetection=[&](int v)->bool{
+    // Works for Directed Graph 
+    // Take input properly --> Dont forget to take directed graph input
+    // Graph may be disconnected... so check for it
+    vis[v]=1;
+    recst[v]=1;
+    for(auto u:adj[v]){
+        if(vis[u]==0 && CycleDetection(u)==1){
+            return 1;
+        }
+        else if(recst[u]==1){
+            return 1;
+        }
+    } 
+    recst[v]=0;
+    return 0;
+};
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>CycleDetectionDirectedGraph</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

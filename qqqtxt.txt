@@ -1,5 +1,3 @@
-<snippet>
-	<content><![CDATA[
 //2019B4A80800G
 #include<bits/stdc++.h>
 using namespace std;
@@ -10,6 +8,7 @@ const int imax=INT_MAX;
 const int imin=INT_MIN;
 const long long int llmax=LLONG_MAX;
 const long long int llmin=LLONG_MIN;
+int gttccc=-1;
 #define pb push_back
 #define F_OR(i, a, b, s) for (ll i=(a); (s)>0?i<(b):i>(b); i+=(s))
 #define F_OR1(e) F_OR(i, 0, e, 1)
@@ -22,9 +21,9 @@ const long long int llmin=LLONG_MIN;
 #define nl cout<<"\n";
 #define cnl cerr<<"\n";
 #define mp make_pair
-#define all(x) (x).begin(),(x).end()
+#define all(x) (x).begin(),(x).end() 
 #define sall(x) sort((x).begin(),(x).end());
-#define rall(x) sort((x).rbegin(),(x).rend()); 
+#define rall(x) sort((x).rbegin(),(x).rend());
 #define meme(x, y) memset(x, y, sizeof(x))
 #define each(a,x) for (auto& a: x)
 #define ff first
@@ -37,6 +36,7 @@ const long long int llmin=LLONG_MIN;
 #define mina(a,n) *min_element(a,a+n)
 #define maxv(v) *max_element(v.begin(), v.end())
 #define minv(v) *min_element(v.begin(), v.end())
+# define gout() if(gttccc==-1){gttccc=ttt+1;};cout<<"Case #"<<gttccc-ttt<<": ";
 #ifdef LOCAL
 #include "debug.h"
 #else
@@ -96,44 +96,40 @@ using namespace __gnu_pbds;
 tcT> using my_set=tree<T,null_type,less<T>,rb_tree_tag,tree_order_statistics_node_update>;
 tcT> using my_multi_set=tree<T,null_type,less_equal<T>,rb_tree_tag,tree_order_statistics_node_update>;
 
+void gibberish(){
+// check for test cases
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// final return 
+return;
+}
 int main()
 {
 ios_base::sync_with_stdio(0);
 cin.tie(0);cout.tie(0);
-
-$0
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+int ttt=1;
+// cin>>ttt;
+while(ttt--){
+// gout();
+    gibberish();
+}
 
 return 0;
 }
-]]></content>
-	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	 <tabTrigger>qqq</tabTrigger> 
-	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<!-- <scope>source.python</scope> -->
-</snippet>

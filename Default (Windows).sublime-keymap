@@ -5,25 +5,26 @@
     "args": {"mode": "mode_insert"},
     "context": [{"key": "vi_insert_mode_aware"}]
 }
-,
-{
-    "keys": ["j", "j"],
-    "command": "_enter_normal_mode",
-    "args": {"mode": "mode_insert"},
-    "context": [{"key": "vi_insert_mode_aware"}]
-}
-,
-{
-    "keys": ["k", "j"],
-    "command": "_enter_normal_mode",
-    "args": {"mode": "mode_insert"},
-    "context": [{"key": "vi_insert_mode_aware"}]
-}
+// ,
+// {
+//     "keys": ["j", "j"],
+//     "command": "_enter_normal_mode",
+//     "args": {"mode": "mode_insert"},
+//     "context": [{"key": "vi_insert_mode_aware"}]
+// }
+// ,
+// {
+//     "keys": ["k", "j"],
+//     "command": "_enter_normal_mode",
+//     "args": {"mode": "mode_insert"},
+//     "context": [{"key": "vi_insert_mode_aware"}]
+// }
  // ,{ "keys": ["{","enter"], "command": ["9","j"] },
-,{"keys": ["ctrl+shift+."], "command": "timestamp" },   
+,{"keys": ["ctrl+shift+j"], "command": "timestamp" },   
     { "keys": ["ctrl+c"], "command": "copy" },
 
 ]
+
 
    
 

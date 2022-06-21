@@ -1,6 +1,6 @@
 {
 "cmd": ["g++.exe",
- "-std=c++17", "${file}", 
+ "-std=c++17", "${file}","-DLOCAL", 
   "-o",
    "${file_base_name}.exe",
     "&&" ,
